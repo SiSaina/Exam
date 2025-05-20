@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -26,3 +27,13 @@ Route::get('/statistic', function () {
 Route::get('/schedule', function () {
     return Inertia::render('schedule');
 })->name('schedule');
+
+Route::get('employee', function () {
+    return Inertia::render('employee/index');
+})->name('employee.index');
+
+Route::get('admin', function () {
+    return Inertia::render('admin/index');
+})->name('admin.index');
+
+Route::get('employee/create', [EmployeeController::class, 'create'])->name('employee.create');
