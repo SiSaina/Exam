@@ -19,14 +19,10 @@ Route::get('/new', function () {
     return Inertia::render('new');
 })->name('new');
 
-Route::get('/player', function () {
-    return Inertia::render('player');
-})->name('player');
+Route::get('/statistic', function () {
+    return Inertia::render('statistic');
+})->name('statistic');
 
 Route::get('/schedule', function () {
     return Inertia::render('schedule');
 })->name('schedule');
-
-Route::get('/team', function () {
-    return Inertia::render('team');
-})->name('team');

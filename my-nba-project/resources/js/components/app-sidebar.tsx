@@ -3,7 +3,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpenText, Calendar, CircleUser, LayoutGrid, Newspaper, PhoneCall, Users, Volleyball } from 'lucide-react';
+import { BookOpenText, Calendar, LayoutGrid, Newspaper, PhoneCall, Users, Volleyball } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -28,14 +28,9 @@ const mainNavItems: NavItem[] = [
         icon: Newspaper
     },
     {
-        title: 'Team',
-        href: '/team',
+        title: 'Statistic',
+        href: '/statistic',
         icon: Users
-    },
-    {
-        title: 'Player',
-        href: '/player',
-        icon: CircleUser
     },
     {
         title: 'About',
