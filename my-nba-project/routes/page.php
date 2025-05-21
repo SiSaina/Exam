@@ -23,6 +23,16 @@ Route::get('/new', function () {
 Route::get('/statistic', function () {
     return Inertia::render('statistic');
 })->name('statistic');
+Route::get('/statistic/homeStat', function () {
+    return Inertia::render('statistic/homeStat');
+})->name('statistic.homeStat');
+Route::get('/statistic/playerStat', function () {
+    return Inertia::render('statistic/playerStat');
+})->name('statistic.playerStat');
+Route::get('/statistic/teamStat', function () {
+    return Inertia::render('statistic/teamStat');
+})->name('statistic.teamStat');
+
 
 Route::get('/schedule', function () {
     return Inertia::render('schedule');
@@ -37,3 +47,5 @@ Route::get('admin', function () {
 })->name('admin.index');
 
 Route::get('employee/create', [EmployeeController::class, 'create'])->name('employee.create');
+Route::get('employee/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+

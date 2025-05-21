@@ -12,4 +12,9 @@ class EmployeeController extends Controller
     {
         return Inertia::render('employee/create');
     }
+    
+    public function edit()
+    {
+        return Inertia::render('employee/edit');
+    }
 }
