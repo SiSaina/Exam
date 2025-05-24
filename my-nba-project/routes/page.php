@@ -12,13 +12,27 @@ Route::get('/contact', function () {
     return Inertia::render('contact');
 })->name('contact');
 
-Route::get('/game', function () {
-    return Inertia::render('game');
-})->name('game');
+Route::get('/game/game', function () {
+    return Inertia::render('game/game');
+})->name('game/game');
+Route::get('/game/boxScore', function () {
+    return Inertia::render('game/boxScore');
+})->name('game/boxScore');
 
-Route::get('/new', function () {
-    return Inertia::render('new');
-})->name('new');
+
+Route::get('/news/homeNews', function () {
+    return Inertia::render('news/homeNews');
+})->name('news.homeNews');
+Route::get('/news/topNews', function () {
+    return Inertia::render('news/topNews');
+})->name('news.topNews');
+Route::get('/news/nbaAward', function () {
+    return Inertia::render('news/nbaAward');
+})->name('news.nbaAward');
+Route::get('/news/newsDetail', function () {
+    return Inertia::render('news/newsDetail');
+})->name('news.newsDetail');
+
 
 Route::get('/statistic', function () {
     return Inertia::render('statistic');

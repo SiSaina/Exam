@@ -14,7 +14,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Game',
-        href: '/game',
+        href: '/game/game',
         icon: Volleyball
     },
     {
@@ -27,8 +27,8 @@ const mainNavItems: NavItem[] = [
         href: '/new',
         icon: Newspaper,
         children: [
-            { title: 'Home News', href: '/news/homeNew', icon: Ghost },
-            { title: 'Top News', href: '/news/topNew', icon: Ghost },
+            { title: 'Home News', href: '/news/homeNews', icon: Ghost },
+            { title: 'Top News', href: '/news/topNews', icon: Ghost },
             { title: 'NBA award', href: '/news/nbaAward', icon: Ghost },
         ]
     },
