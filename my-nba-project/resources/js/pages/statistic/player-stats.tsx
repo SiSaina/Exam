@@ -4,18 +4,18 @@ import { Head } from "@inertiajs/react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Statistic',
-        href: '/statistic/teamStat',
+        title: 'Player statistic',
+        href: '/statistic/player-stats',
     },
 ];
 
-export default function TeamStat() {
+export default function PlayerStat() {
     return (
         <>
             <AppLayout breadcrumbs={breadcrumbs}>
-                <Head title="Statistic" />
+                <Head title="Player statistic" />
                 <div className="px-6 py-8">
-                    <h1 className="text-3xl font-bold mb-6">Team Stats</h1>
+                    <h1 className="text-3xl font-bold mb-6">Player Stats</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                         {['Points', 'Assists', 'Rebounds', 'Block', 'Steal', 'Turnover'].map((stat) => (
                             <div key={stat} className="bg-white shadow rounded-lg p-4">

@@ -4,8 +4,8 @@ import { Head } from "@inertiajs/react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'New',
-        href: '/nbaAward',
+        title: 'NBA Award',
+        href: '/nba-award',
     },
 ];
 
@@ -13,7 +13,7 @@ export default function NbaAward() {
     return (
         <>
             <AppLayout breadcrumbs={breadcrumbs}>
-                <Head title="New" />
+                <Head title="NBA Award" />
                 <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-12">
 
                     {/* Page Header */}
@@ -29,7 +29,7 @@ export default function NbaAward() {
                         {/* Left Column: Featured Award Image */}
                         <div className="w-full md:col-span-2">
                             <a 
-                                href="/news/newsDetail"
+                                href="/news/news-detail"
                                 className="block p-3 hover:shadow-md transition cursor-pointer">
                                 <figure>
                                     <img

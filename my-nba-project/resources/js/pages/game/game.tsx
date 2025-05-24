@@ -5,7 +5,7 @@ import { Head, router } from "@inertiajs/react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: "Game",
-        href: "/game.game",
+        href: "/game",
     },
 ];
 
@@ -98,7 +98,7 @@ export default function Game() {
                             </div>
                             <div>
                                 <button 
-                                    onClick={() => router.visit('/game/boxScore')}
+                                    onClick={() => router.visit('/game/box-score')}
                                     className="border-2 border-black-600 rounded-full px-4 py-2 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in-out">
                                     Game Details
                                 </button>

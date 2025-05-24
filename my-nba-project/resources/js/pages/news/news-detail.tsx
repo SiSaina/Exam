@@ -3,7 +3,8 @@ import { type BreadcrumbItem } from '@/types'
 import { Head } from "@inertiajs/react"
 
 const breadcrumbs: BreadcrumbItem[] = [
-    { title: 'News Detail', href: '/newsDetail' },
+    { title: 'News', href: '/news' },
+    { title: 'News Detail', href: '/news-detail' },
 ]
 
 export default function NewsDetail() {

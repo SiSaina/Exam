@@ -1,25 +1,21 @@
-import AppLayout from "@/layouts/app-layout";
+import AppLayout from "@/layouts/app-layout"
 import { type BreadcrumbItem } from '@/types';
 import { Head } from "@inertiajs/react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Statistic',
-        href: '/statistic/homeStat',
+        title: 'Team statistic',
+        href: '/statistic/team-stats',
     },
 ];
 
-export default function HomeStat() {
+export default function TeamStat() {
     return (
         <>
             <AppLayout breadcrumbs={breadcrumbs}>
-                <Head title="Statistic" />
+                <Head title="Team statistic" />
                 <div className="px-6 py-8">
-                    <h1 className="text-3xl font-bold mb-6">Home Stats</h1>
-                    <div className="mb-6 flex justify-center space-x-4">
-                        <button className="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300">Daily</button>
-                        <button className="px-4 py-2 rounded-md bg-gray-200 hover:bg-gray-300">Season</button>
-                    </div>
+                    <h1 className="text-3xl font-bold mb-6">Team Stats</h1>
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                         {['Points', 'Assists', 'Rebounds', 'Block', 'Steal', 'Turnover'].map((stat) => (
                             <div key={stat} className="bg-white shadow rounded-lg p-4">
@@ -50,5 +46,5 @@ export default function HomeStat() {
                 </div>
             </AppLayout>
         </>
-    );
+    )
 }

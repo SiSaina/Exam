@@ -14,7 +14,7 @@ const mainNavItems: NavItem[] = [
     },
     {
         title: 'Game',
-        href: '/game/game',
+        href: '/game',
         icon: Volleyball
     },
     {
@@ -27,9 +27,9 @@ const mainNavItems: NavItem[] = [
         href: '/new',
         icon: Newspaper,
         children: [
-            { title: 'Home News', href: '/news/homeNews', icon: Ghost },
-            { title: 'Top News', href: '/news/topNews', icon: Ghost },
-            { title: 'NBA award', href: '/news/nbaAward', icon: Ghost },
+            { title: 'Home News', href: '/news', icon: Ghost },
+            { title: 'Top News', href: '/news/top-news', icon: Ghost },
+            { title: 'NBA award', href: '/news/nba-award', icon: Ghost },
         ]
     },
     {
@@ -37,9 +37,9 @@ const mainNavItems: NavItem[] = [
         href: '/statistic',
         icon: Users,
         children: [
-            { title: 'Home Stat', href: '/statistic/homeStat', icon: Ghost },
-            { title: 'Player Stat', href: '/statistic/playerStat', icon: Ghost },
-            { title: 'Team Stat', href: '/statistic/teamStat', icon: Ghost },
+            { title: 'Home Stat', href: '/statistic/home-stats', icon: Ghost },
+            { title: 'Player Stat', href: '/statistic/player-stats', icon: Ghost },
+            { title: 'Team Stat', href: '/statistic/team-stats', icon: Ghost },
         ]
     },
     {

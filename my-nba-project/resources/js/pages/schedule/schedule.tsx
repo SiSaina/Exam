@@ -1,7 +1,6 @@
 import AppLayout from "@/layouts/app-layout"
 import { type BreadcrumbItem } from '@/types'
-import { Head } from "@inertiajs/react"
-import { Button } from "@/components/ui/button"
+import { Head, router } from "@inertiajs/react"
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -98,7 +97,11 @@ export default function Schedule() {
                                             </td>
                                             <td className="px-4 py-3">{game.location}</td>
                                             <td className="px-4 py-3">
-                                                <Button size="sm" className="text-sm">View Details</Button>
+                                                <button
+                                                    onClick={() => router.visit('/schedule/schedule-detail')}
+                                                    className="border-2 border-black-600 rounded-full px-4 py-2 hover:bg-indigo-700 hover:text-white transition duration-300 ease-in-out">
+                                                    View Details
+                                                </button>
                                             </td>
                                         </tr>
                                     ))}

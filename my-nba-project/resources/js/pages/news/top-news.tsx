@@ -4,8 +4,8 @@ import { Head } from "@inertiajs/react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: "New",
-        href: "/topNews",
+        title: "Top News",
+        href: "/top-news",
     },
 ];
 

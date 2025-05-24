@@ -4,8 +4,8 @@ import { Head } from "@inertiajs/react";
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'New',
-        href: '/homeNews',
+        title: 'Home News',
+        href: '/home-news',
     },
 ];
 
@@ -13,13 +13,13 @@ export default function HomeNews() {
     return (
         <>
             <AppLayout breadcrumbs={breadcrumbs}>
-                <Head title="New" />
+                <Head title="Home News" />
                 <div className="flex flex-col items-center justify-center h-full">
                     <section className="py-10 px-4">
                         <div className="max-w-5xl mx-auto space-y-10">
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 <a
-                                    href="/news/newsDetail"
+                                    href="/news/news-detail"
                                     className="lg:col-span-2 block bg-white shadow rounded-lg overflow-hidden hover:shadow-lg transition"
                                 >
                                     <article className="flex flex-col h-96">

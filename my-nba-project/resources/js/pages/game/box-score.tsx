@@ -1,10 +1,22 @@
 import AppLayout from "@/layouts/app-layout";
 import { Head } from "@inertiajs/react";
+import { type BreadcrumbItem } from "@/types";
+
+const breadcrumbs: BreadcrumbItem[] = [
+    {
+        title: "Game",
+        href: "/game",
+    },
+    {
+      title: "Box Score",
+      href: "/box-score",
+    }
+];
 
 export default function BoxScore() {
   return (
     <>
-      <AppLayout breadcrumbs={[{ title: "Box score", href: "/boxScore" }]}>
+      <AppLayout breadcrumbs={breadcrumbs}>
         <Head title="Box Score" />
         <div className="px-6 py-6">
 
