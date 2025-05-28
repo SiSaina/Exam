@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('week_games', function (Blueprint $table) {
+        Schema::create('news', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->foreignId('game_id')->constrained('games')->onDelete('cascade');
+            $table->string('title');
+            $table->text('main_content');
+            $table->text('sub_content');
+            $table->datetime('published_at');
+            $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
+            $table->string('video_url')->nullable();
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('week_games');
+        Schema::dropIfExists('news');
     }
 };

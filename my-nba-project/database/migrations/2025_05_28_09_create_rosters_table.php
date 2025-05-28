@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
             $table->foreignId('player_id')->constrained('players')->onDelete('cascade');
-            $table->foreignId('season_id')->constrained('seasons')->onDelete('cascade');
-            $table->string('jersey_number');
+            $table->foreignId('season_id')->constrained('seasons')->onDelete('cascade');            
             $table->string('position');
+            $table->string('jersey_number');
             $table->timestamps();
         });
     }

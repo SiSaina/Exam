@@ -11,14 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('championships', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('main_content');
-            $table->text('sub_content');
-            $table->datetime('published_at');
-            $table->string('author');
-            $table->string('video_url')->nullable();
+            $table->foreignId('season_id')->constrained('seasons')->onDelete('cascade');
+            $table->foreignId('team_id')->constrained('teams')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -28,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('championships');
     }
 };

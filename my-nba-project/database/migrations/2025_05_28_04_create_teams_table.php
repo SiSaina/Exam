@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('teams', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('slug_one')->unique();
+            $table->string('slug')->unique();
             $table->string('slug_two')->unique();
-            $table->string('logo_url')->nullable();
-            $table->string('stadium')->nullable();
-            $table->string('city')->nullable();
-            $table->string('conference')->nullable();
+            $table->string('logo_url');
+            $table->string('stadium');
+            $table->string('city');
+            $table->string('conference');
             $table->timestamps();
         });
     }
