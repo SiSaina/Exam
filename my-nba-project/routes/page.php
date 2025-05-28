@@ -4,8 +4,8 @@ use App\Http\Controllers\Employee\EmployeeController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
-Route::get('/about', function () { return Inertia::render('about'); })->name('about');
-Route::get('/contact', function () { return Inertia::render('contact'); })->name('contact');
+Route::inertia('/about', 'about')->name('about');
+Route::inertia('/contact', 'contact')->name('contact');
 
 Route::get('/game', function () { return Inertia::render('game/game'); })->name('game.game');
 Route::get('/game/box-score', function () { return Inertia::render('game/box-score'); })->name('game.box-score');
