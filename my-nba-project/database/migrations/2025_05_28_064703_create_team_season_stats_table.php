@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('news', function (Blueprint $table) {
+        Schema::create('team_season_stats', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('main_content');
-            $table->text('sub_content');
-            $table->datetime('published_at');
-            $table->string('author');
-            $table->string('video_url')->nullable();
+            $table->foreignId('game_team_stats_id')->constrained('game_team_stats')->onDelete('cascade');
+            $table->foreignId('season_id')->constrained('seasons')->onDelete('cascade');
+            $table->integer('wins')->default(0);
+            $table->integer('losses')->default(0);
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('news');
+        Schema::dropIfExists('team_season_stats');
     }
 };
