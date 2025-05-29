@@ -9,4 +9,13 @@ class News extends Model
 {
     /** @use HasFactory<\Database\Factories\NewsFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'title',
+        'main_content',
+        'sub_content',
+        'published_at',
+        'author_id',
+        'video_url'
+    ];
 }
