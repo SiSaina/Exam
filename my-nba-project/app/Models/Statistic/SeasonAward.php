@@ -9,4 +9,14 @@ class SeasonAward extends Model
 {
     /** @use HasFactory<\Database\Factories\SeasonAwardFactory> */
     use HasFactory;
+
+    protected $fillable = [
+        'name',
+        'roster_id'
+    ];
+
+    public function roster()
+    {
+        return $this->belongsTo(Roster::class);
+    }
 }

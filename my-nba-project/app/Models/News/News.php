@@ -18,4 +18,13 @@ class News extends Model
         'author_id',
         'video_url'
     ];
+
+    public function author()
+    {
+        return $this->belongsTo(User::class, 'author_id');
+    }
+    public function newsImages()
+    {
+        return $this->hasMany(NewsImage::class);
+    }
 }
