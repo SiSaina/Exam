@@ -3,64 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\NewsImage;
-use App\Http\Requests\StoreNewsImageRequest;
-use App\Http\Requests\UpdateNewsImageRequest;
+use App\Http\Requests\News\StoreNewsImageRequest;
 
 class NewsImageController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(StoreNewsImageRequest $request)
     {
-        //
-    }
+        $validatedData = $request->validated();
+        NewsImage::create($validatedData);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(NewsImage $newsImage)
-    {
-        //
+        return redirect()->route('news.home')->with('success', 'News image created successfully.');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(NewsImage $newsImage)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateNewsImageRequest $request, NewsImage $newsImage)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(NewsImage $newsImage)
     {
-        //
+        $newsImage->delete();
+
+        return redirect()->route('news.home')->with('success', 'News image deleted successfully.');
     }
 }

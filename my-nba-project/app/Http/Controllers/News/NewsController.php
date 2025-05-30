@@ -1,66 +1,68 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\News;
 
+use App\Http\Controllers\Controller;
 use App\Models\News;
-use App\Http\Requests\StoreNewsRequest;
-use App\Http\Requests\UpdateNewsRequest;
+use App\Http\Requests\News\StoreNewsRequest;
+use App\Http\Requests\News\UpdateNewsRequest;
+use Inertia\Inertia;
 
 class NewsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    //show home page of news
+    public function home()
     {
-        //
+        return Inertia::render('news/home-news');
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
+    //show top news page
+    public function topNews()
+    {
+        return Inertia::render('news/top-news');
+    }
+    //show nba award page
+    public function nbaAward()
+    {
+        return Inertia::render('news/nba-award');
+    }
+    //show news detail page
+    public function show()
+    {
+        return Inertia::render('news/news-detail');
+    }
+    //show create news page
     public function create()
     {
-        //
+        return Inertia::render('news/create-news');
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    //store news
     public function store(StoreNewsRequest $request)
     {
-        //
-    }
+        $validatedData = $request->validated();
+        News::create($validatedData);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(News $news)
-    {
-        //
+        return redirect()->route('news.home')->with('success', 'News created successfully.');
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
+    //show edit news page
     public function edit(News $news)
     {
-        //
+        return Inertia::render('news/edit-news', [
+            'news' => $news,
+        ]);
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
+    //update news
     public function update(UpdateNewsRequest $request, News $news)
     {
-        //
-    }
+        $validatedData = $request->validated();
+        $news->update($validatedData);
 
-    /**
-     * Remove the specified resource from storage.
-     */
+        return redirect()->route('news.home')->with('success', 'News updated successfully.');
+    }
+    //delete news
     public function destroy(News $news)
     {
-        //
+        $news->delete();
+
+        return redirect()->route('news.home')->with('success', 'News deleted successfully.');
     }
 }
