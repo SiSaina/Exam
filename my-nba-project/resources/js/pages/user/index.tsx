@@ -7,8 +7,8 @@ import { useState } from 'react';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Employee dashboard',
-        href: '/employee.index',
+        title: 'User dashboard',
+        href: '/user.index',
     },
 ];
 
@@ -33,7 +33,7 @@ export default function Index() {
             <AppLayout breadcrumbs={breadcrumbs}>
                 <Head title="Employee dashboard" />
                 <div className="flex flex-col items-center justify-center h-full p-6">
-                    <h1 className="text-4xl font-bold mb-6">Employee Page</h1>
+                    <h1 className="text-4xl font-bold mb-6">User Page</h1>
 
                     <div className="w-full max-w-4xl overflow-x-auto shadow-md rounded-lg mb-6">
                         <table className="min-w-full divide-y divide-gray-200 bg-white">
@@ -70,7 +70,7 @@ export default function Index() {
                     <button
                         type="button"
                         className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-full shadow flex items-center gap-2"
-                        onClick={() => router.get('/employee/create')}
+                        onClick={() => router.get('/user/create')}
                     >
                         Create Employee
                     </button>

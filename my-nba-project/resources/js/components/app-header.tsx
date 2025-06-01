@@ -5,13 +5,12 @@ import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
 import { NavigationMenu, NavigationMenuItem, NavigationMenuList, navigationMenuTriggerStyle } from '@/components/ui/navigation-menu';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
 import { UserMenuContent } from '@/components/user-menu-content';
 import { useInitials } from '@/hooks/use-initials';
 import { cn } from '@/lib/utils';
 import { type BreadcrumbItem, type NavItem, type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { BookOpen, Folder, LayoutGrid, Menu, Search } from 'lucide-react';
+import { BookOpenText, Calendar, ChevronDown, Ghost, LayoutGrid, Menu, Newspaper, PhoneCall, Search, User, Users, Volleyball } from 'lucide-react';
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
@@ -21,19 +20,51 @@ const mainNavItems: NavItem[] = [
         href: '/dashboard',
         icon: LayoutGrid,
     },
-];
-
-const rightNavItems: NavItem[] = [
     {
-        title: 'Repository',
-        href: 'https://github.com/laravel/react-starter-kit',
-        icon: Folder,
+        title: 'Game',
+        href: '/game',
+        icon: Volleyball
     },
     {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#react',
-        icon: BookOpen,
+        title: 'Schedule',
+        href: '/schedule',
+        icon: Calendar
     },
+    {
+        title: 'New',
+        href: '/new',
+        icon: Newspaper,
+        children: [
+            { title: 'Home News', href: '/news', icon: Ghost },
+            { title: 'Top News', href: '/news/top-news', icon: Ghost },
+            { title: 'NBA award', href: '/news/nba-award', icon: Ghost },
+        ]
+    },
+    {
+        title: 'Statistic',
+        href: '/statistic',
+        icon: Users,
+        children: [
+            { title: 'Home Stat', href: '/statistic/home-stats', icon: Ghost },
+            { title: 'Player Stat', href: '/statistic/player-stats', icon: Ghost },
+            { title: 'Team Stat', href: '/statistic/team-stats', icon: Ghost },
+        ]
+    },
+    {
+        title: 'About',
+        href: '/about',
+        icon: BookOpenText
+    },
+    {
+        title: 'Contact',
+        href: '/contact',
+        icon: PhoneCall
+    },
+    {
+        title: 'Admin dashboard',
+        href: '/admin',
+        icon: User
+    }
 ];
 
 const activeItemStyles = 'text-neutral-900 dark:bg-neutral-800 dark:text-neutral-100';
@@ -73,21 +104,6 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                                                 </Link>
                                             ))}
                                         </div>
-
-                                        <div className="flex flex-col space-y-4">
-                                            {rightNavItems.map((item) => (
-                                                <a
-                                                    key={item.title}
-                                                    href={item.href}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="flex items-center space-x-2 font-medium"
-                                                >
-                                                    {item.icon && <Icon iconNode={item.icon} className="h-5 w-5" />}
-                                                    <span>{item.title}</span>
-                                                </a>
-                                            ))}
-                                        </div>
                                     </div>
                                 </div>
                             </SheetContent>
@@ -103,23 +119,52 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                         <NavigationMenu className="flex h-full items-stretch">
                             <NavigationMenuList className="flex h-full items-stretch space-x-2">
                                 {mainNavItems.map((item, index) => (
-                                    <NavigationMenuItem key={index} className="relative flex h-full items-center">
-                                        <Link
-                                            href={item.href}
-                                            className={cn(
-                                                navigationMenuTriggerStyle(),
-                                                page.url === item.href && activeItemStyles,
-                                                'h-9 cursor-pointer px-3',
-                                            )}
-                                        >
-                                            {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
-                                            {item.title}
-                                        </Link>
-                                        {page.url === item.href && (
-                                            <div className="absolute bottom-0 left-0 h-0.5 w-full translate-y-px bg-black dark:bg-white"></div>
-                                        )}
-                                    </NavigationMenuItem>
-                                ))}
+  <NavigationMenuItem key={index} className="relative flex h-full items-center">
+    {item.children && item.children.length > 0 ? (
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button
+            variant="ghost"
+            className={cn(
+              'h-9 cursor-pointer px-3',
+              navigationMenuTriggerStyle(),
+              page.url === item.href && activeItemStyles
+            )}
+          >
+            {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
+            {item.title}
+            <ChevronDown className="ml-1 size-3 transition-transform duration-300" />
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-48 mt-2">
+          {item.children.map((child, childIndex) => (
+            <Link
+              key={childIndex}
+              href={child.href}
+              className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted/40"
+            >
+              {child.icon && <Icon iconNode={child.icon} className="h-4 w-4" />}
+              {child.title}
+            </Link>
+          ))}
+        </DropdownMenuContent>
+      </DropdownMenu>
+    ) : (
+      <Link
+        href={item.href}
+        className={cn(
+          navigationMenuTriggerStyle(),
+          page.url === item.href && activeItemStyles,
+          'h-9 cursor-pointer px-3 flex items-center'
+        )}
+      >
+        {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
+        {item.title}
+      </Link>
+    )}
+  </NavigationMenuItem>
+))}
+
                             </NavigationMenuList>
                         </NavigationMenu>
                     </div>
@@ -129,28 +174,6 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                             <Button variant="ghost" size="icon" className="group h-9 w-9 cursor-pointer">
                                 <Search className="!size-5 opacity-80 group-hover:opacity-100" />
                             </Button>
-                            <div className="hidden lg:flex">
-                                {rightNavItems.map((item) => (
-                                    <TooltipProvider key={item.title} delayDuration={0}>
-                                        <Tooltip>
-                                            <TooltipTrigger>
-                                                <a
-                                                    href={item.href}
-                                                    target="_blank"
-                                                    rel="noopener noreferrer"
-                                                    className="group text-accent-foreground ring-offset-background hover:bg-accent hover:text-accent-foreground focus-visible:ring-ring ml-1 inline-flex h-9 w-9 items-center justify-center rounded-md bg-transparent p-0 text-sm font-medium transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50"
-                                                >
-                                                    <span className="sr-only">{item.title}</span>
-                                                    {item.icon && <Icon iconNode={item.icon} className="size-5 opacity-80 group-hover:opacity-100" />}
-                                                </a>
-                                            </TooltipTrigger>
-                                            <TooltipContent>
-                                                <p>{item.title}</p>
-                                            </TooltipContent>
-                                        </Tooltip>
-                                    </TooltipProvider>
-                                ))}
-                            </div>
                         </div>
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>

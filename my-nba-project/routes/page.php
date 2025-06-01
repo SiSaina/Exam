@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Employee\EmployeeController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -21,9 +22,9 @@ Route::get('/statistic/team-stats', function () { return Inertia::render('statis
 Route::get('/schedule', function () { return Inertia::render('schedule/schedule'); })->name('schedule.schedule');
 Route::get('/schedule/schedule-detail', function () { return Inertia::render('schedule/schedule-detail'); })->name('schedule.schedule-detail');
 
-Route::get('employee', function () { return Inertia::render('employee/index'); })->name('employee.index');
+Route::get('user', function () { return Inertia::render('user/index'); })->name('user.index');
 
 Route::get('admin', function () { return Inertia::render('admin/index'); })->name('admin.index');
 
-Route::get('employee/create', [EmployeeController::class, 'create'])->name('employee.create');
-Route::get('employee/{id}/edit', [EmployeeController::class, 'edit'])->name('employee.edit');
+Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+Route::get('user/{id}/edit', [UserController::class, 'edit'])->name('user.edit');
