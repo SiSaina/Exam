@@ -13,6 +13,16 @@ const mainNavItems: NavItem[] = [
         icon: Volleyball
     },
     {
+        title: 'Player',
+        href: '/admin/player/index',
+        icon: User
+    },
+    {
+        title: 'Team',
+        href: '/admin/team/index',
+        icon: Users
+    },
+    {
         title: 'Schedule',
         href: '/admin/schedule/index',
         icon: Calendar
