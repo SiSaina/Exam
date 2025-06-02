@@ -14,7 +14,12 @@ import { BookOpenText, Calendar, ChevronDown, Ghost, LayoutGrid, Menu, Newspaper
 import AppLogo from './app-logo';
 import AppLogoIcon from './app-logo-icon';
 
-const mainNavItems: NavItem[] = [
+const adminNavItem: NavItem = {
+    title: 'Admin dashboard',
+    href: '/admin',
+    icon: User
+};
+const baseNavItems: NavItem[] = [
     {
         title: 'Dashboard',
         href: '/dashboard',
@@ -59,11 +64,6 @@ const mainNavItems: NavItem[] = [
         title: 'Contact',
         href: '/contact',
         icon: PhoneCall
-    },
-    {
-        title: 'Admin dashboard',
-        href: '/admin',
-        icon: User
     }
 ];
 
@@ -77,11 +77,14 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
     const page = usePage<SharedData>();
     const { auth } = page.props;
     const getInitials = useInitials();
+    
+    const mainNavItems = auth.user?.role?.name === 'admin'
+        ? [...baseNavItems, adminNavItem]
+        : baseNavItems;
     return (
         <>
             <div className="border-sidebar-border/80 border-b">
                 <div className="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
-                    {/* Mobile Menu */}
                     <div className="lg:hidden">
                         <Sheet>
                             <SheetTrigger asChild>
@@ -114,57 +117,55 @@ export function AppHeader({ breadcrumbs = [] }: AppHeaderProps) {
                         <AppLogo />
                     </Link>
 
-                    {/* Desktop Navigation */}
                     <div className="ml-6 hidden h-full items-center space-x-6 lg:flex">
                         <NavigationMenu className="flex h-full items-stretch">
                             <NavigationMenuList className="flex h-full items-stretch space-x-2">
                                 {mainNavItems.map((item, index) => (
-  <NavigationMenuItem key={index} className="relative flex h-full items-center">
-    {item.children && item.children.length > 0 ? (
-      <DropdownMenu>
-        <DropdownMenuTrigger asChild>
-          <Button
-            variant="ghost"
-            className={cn(
-              'h-9 cursor-pointer px-3',
-              navigationMenuTriggerStyle(),
-              page.url === item.href && activeItemStyles
-            )}
-          >
-            {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
-            {item.title}
-            <ChevronDown className="ml-1 size-3 transition-transform duration-300" />
-          </Button>
-        </DropdownMenuTrigger>
-        <DropdownMenuContent className="w-48 mt-2">
-          {item.children.map((child, childIndex) => (
-            <Link
-              key={childIndex}
-              href={child.href}
-              className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted/40"
-            >
-              {child.icon && <Icon iconNode={child.icon} className="h-4 w-4" />}
-              {child.title}
-            </Link>
-          ))}
-        </DropdownMenuContent>
-      </DropdownMenu>
-    ) : (
-      <Link
-        href={item.href}
-        className={cn(
-          navigationMenuTriggerStyle(),
-          page.url === item.href && activeItemStyles,
-          'h-9 cursor-pointer px-3 flex items-center'
-        )}
-      >
-        {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
-        {item.title}
-      </Link>
-    )}
-  </NavigationMenuItem>
-))}
-
+                                    <NavigationMenuItem key={index} className="relative flex h-full items-center">
+                                        {item.children && item.children.length > 0 ? (
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger asChild>
+                                                    <Button
+                                                        variant="ghost"
+                                                        className={cn(
+                                                            'h-9 cursor-pointer px-3',
+                                                            navigationMenuTriggerStyle(),
+                                                            page.url === item.href && activeItemStyles
+                                                        )}
+                                                    >
+                                                        {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
+                                                        {item.title}
+                                                        <ChevronDown className="ml-1 size-3 transition-transform duration-300" />
+                                                    </Button>
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent className="w-48 mt-2">
+                                                    {item.children.map((child, childIndex) => (
+                                                        <Link
+                                                            key={childIndex}
+                                                            href={child.href}
+                                                            className="flex items-center gap-2 px-4 py-2 text-sm hover:bg-muted/40"
+                                                        >
+                                                            {child.icon && <Icon iconNode={child.icon} className="h-4 w-4" />}
+                                                            {child.title}
+                                                        </Link>
+                                                    ))}
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
+                                        ) : (
+                                            <Link
+                                                href={item.href}
+                                                className={cn(
+                                                    navigationMenuTriggerStyle(),
+                                                    page.url === item.href && activeItemStyles,
+                                                    'h-9 cursor-pointer px-3 flex items-center'
+                                                )}
+                                            >
+                                                {item.icon && <Icon iconNode={item.icon} className="mr-2 h-4 w-4" />}
+                                                {item.title}
+                                            </Link>
+                                        )}
+                                    </NavigationMenuItem>
+                                ))}
                             </NavigationMenuList>
                         </NavigationMenu>
                     </div>

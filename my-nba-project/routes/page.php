@@ -12,7 +12,6 @@ Route::inertia('/contact', 'contact')->name('contact');
 Route::get('/game', function () { return Inertia::render('game/game'); })->name('game.game');
 Route::get('/game/box-score', function () { return Inertia::render('game/box-score'); })->name('game.box-score');
 
-
 Route::get('/statistic', function () { return Inertia::render('statistic'); })->name('statistic');
 Route::get('/statistic/home-stats', function () { return Inertia::render('statistic/home-stats'); })->name('statistic.home-stats');
 Route::get('/statistic/player-stats', function () { return Inertia::render('statistic/player-stats'); })->name('statistic.player-stats');
