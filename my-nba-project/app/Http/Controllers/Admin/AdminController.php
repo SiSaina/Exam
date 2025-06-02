@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function game()
     {
-        return Inertia::render('admin/game');
+        // return Inertia::render('admin/game');
     }
     public function news()
     {

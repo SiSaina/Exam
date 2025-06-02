@@ -9,27 +9,27 @@ import AppLogo from './app-logo';
 const mainNavItems: NavItem[] = [
     {
         title: 'Game',
-        href: '/admin/game',
+        href: '/admin/game/index',
         icon: Volleyball
     },
     {
         title: 'Schedule',
-        href: '/admin/schedule',
+        href: '/admin/schedule/index',
         icon: Calendar
     },
     {
         title: 'News',
-        href: '/admin/news',
+        href: '/admin/news/index',
         icon: Newspaper
     },
     {
         title: 'Statistic',
-        href: '/admin/statistic',
+        href: '/admin/statistic/index',
         icon: Users
     },
     {
         title: 'User',
-        href: '/admin/user',
+        href: '/admin/user/index',
         icon: User
     },
     {
