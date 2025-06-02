@@ -5,7 +5,7 @@ import { Head } from "@inertiajs/react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/index',
+        href: '/admin/game/index',
     },
     {
         title: 'create',
