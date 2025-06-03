@@ -2,180 +2,191 @@ import { LucideIcon } from 'lucide-react';
 import type { Config } from 'ziggy-js';
 
 export interface Auth {
-    user: User;
+  user: User;
 }
 
 export interface BreadcrumbItem {
-    title: string;
-    href: string;
+  title: string;
+  href: string;
 }
 
 export interface NavGroup {
-    title: string;
-    items: NavItem[];
+  title: string;
+  items: NavItem[];
 }
 
 export interface NavItem {
-    title: string;
-    href: string;
-    icon?: LucideIcon | null;
-    isActive?: boolean;
-    children?: NavItem[];
+  title: string;
+  href: string;
+  icon?: LucideIcon | null;
+  isActive?: boolean;
+  children?: NavItem[];
 }
 
 export interface SharedData {
-    name: string;
-    quote: { message: string; author: string };
-    auth: Auth;
-    ziggy: Config & { location: string };
-    sidebarOpen: boolean;
-    [key: string]: unknown;
+  name: string;
+  quote: { message: string; author: string };
+  auth: Auth;
+  ziggy: Config & { location: string };
+  sidebarOpen: boolean;
+  [key: string]: unknown;
 }
 
 export interface User {
-    id: number;
-    name: string;
-    email: string;
-    role: string;
-    avatar?: string;
-    email_verified_at: string | null;
-    created_at: string;
-    updated_at: string;
+  id: number;
+  name: string;
+  email: string;
+  role: Role;
+  avatar?: string;
+  email_verified_at: string | null;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Role {
-    id: number;
-    name: string;
-}
-
-export interface UserRole {
-    user_id: number;
-    role_id: number;
+  id: number;
+  name: string;
 }
 
 export interface News {
   id: number;
   title: string;
-  mainContent: string;
-  subContent: string;
-  publishDate: string;
-  author: string;
-  images: string[];
+  main_content: string;
+  sub_content: string;
+  publish_date: string;
+  author: User;
+  images: NewsImage[];
   video?: string;
+}
+export interface NewsImage {
+  id: number;
+  news: News;
+  url: string;
 }
 
 export interface Team {
   id: number;
   name: string;
-  slugOne: string;     // e.g. "BOS"
-  slugTwo: string;     // e.g. "Celtics"
-  logo: string;
-  city: string;
+  slug: string;
+  slug_two: string;
+  logo_url: string;
   stadium: string;
+  city: string;
   conference: string;
-  divisions: string;
-  foundYear: number;
 }
 
 export interface Player {
   id: number;
-  firstName: string;
-  lastName: string;
-  teamId: number;
-  image: string;
+  first_name: string;
+  last_name: string;
   position: string;
-  birthDate: string;
-  nationality: string;
+  birth_date?: string;
+  nationality?: string;
   height: number;
   weight: number;
-  college: string;
-  draftYear: number;
+  image_url?: string;
+  college?: string;
+  draftYear?: number;
   status: string;
 }
 
 export interface Coach {
   id: number;
-  firstName: string;
-  lastName: string;
-  birthDate: string;
-  nationality: string;
-  image: string;
+  first_name: string;
+  last_name: string;
+  birth_date?: string;
+  nationality?: string;
+  image_url?: string;
 }
 
 export interface TeamCoach {
-  teamId: number;
-  coachId: number;
-  seasonId: number;
-  status: string;
+  team_id: Team;
+  coach_id: Coach;
+  season_id: Season;
+  position: string;
 }
 
 export interface Roster {
-  playerId: number;
-  teamId: number;
-  seasonId: number;
-  jerseyNumber: number;
-  status: string;
+  player: Player;
+  team: Team;
+  season: Season;
+  jersey_number: number;
+  position: string;
 }
 
 export interface WeekGame {
   name: string;
-  gameId: number;
+  game: Game;
+  season: Season;
 }
 
 export interface Game {
   id: number;
-  seasonId: number;
-  gameDate: string;
-  homeTeamId: number;
-  awayTeamId: number;
+  name: string;
+  date: string;
+  time: string;
+  homeTeam: Team;
+  awayTeam: Team;
   homeTeamScore: number;
   awayTeamScore: number;
-  arena: string;
-  city: string;
-  attendances: number;
 }
 
-export interface GameStat {
+export interface GameRosterStats {
   id: number;
-  gameId: number;
-  playerId: number;
-  teamId: number;
-  minutesPlayed: number;
+  game: Game;
+  player: Player;
+  minutes_played: number;
   points: number;
-  rebounds: number;
   assists: number;
-  blocks: number;
+  rebounds: number;
   steals: number;
+  blocks: number;
   turnovers: number;
   fouls: number;
 }
-
-// Statistics Module
-export interface TeamSeasonStat {
+export interface GameTeamStats {
   id: number;
-  teamId: number;
-  seasonId: number;
-  gamesPlayed: number;
-  wins: number;
-  losses: number;
-  pointsScored: number;
-  pointsConceded: number;
-  goalDifference: number;
+  game: Game;
+  Team: Team;
+  minutes_played: number;
   points: number;
+  assists: number;
+  rebounds: number;
+  steals: number;
+  blocks: number;
+  turnovers: number;
+  fouls: number;
 }
-
+// Statistics Module
 export interface SeasonAward {
   id: number;
-  awardName: string;
-  seasonId: number;
-  playerId: number;
-  value: string;
+  name: string;
+  season: Season;
+  player: Player;
 }
-
+export interface Championship {
+  id: number;
+  season: Season;
+  team: Team;
+}
 export interface Season {
   id: number;
   name: string;
   startDate: string;
   endDate: string;
   championship: string;
+}
+export interface Season {
+  id: number;
+  name: string;
+  type: string;
+  start_date: string;
+  end_date: string;
+}
+export interface SeasonTeamStats {
+  id: number;
+  season: Season;
+  game_team_stats: GameTeamStats;
+  wins: number;
+  losses: number;
 }
