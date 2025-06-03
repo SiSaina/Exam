@@ -1,7 +1,10 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Statistic;
 
+use App\Models\Basketball\Roster;
+use App\Models\Basketball\TeamCoach;
+use App\Models\Game\WeekGame;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 

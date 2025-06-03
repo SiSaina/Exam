@@ -18,6 +18,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/player/create-coach', [AdminPlayerController::class, 'createCoach'])->name('player.create-coach');
     Route::get('/player/create-team-coach', [AdminPlayerController::class, 'createTeamCoach'])->name('player.create-team-coach');
     
+    Route::post('/player/storePlayer', [AdminPlayerController::class, 'storePlayer'])->name('player.store-player');
+
     Route::get('/team/index', [AdminTeamController::class, 'index'])->name('team.index');
 
     Route::get('/game/index', [AdminGameController::class, 'index'])->name('game.index');

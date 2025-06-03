@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Models;
+namespace App\Models\Statistic;
 
+use App\Models\Game\GameTeamStats;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
