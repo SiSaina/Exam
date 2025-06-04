@@ -134,7 +134,7 @@ export interface Game {
 export interface GameRosterStats {
   id: number;
   game: Game;
-  player: Player;
+  roster: Roster;
   minutes_played: number;
   points: number;
   assists: number;
@@ -168,11 +168,6 @@ export interface Championship {
   id: number;
   season: Season;
   team: Team;
-}
-export interface Championship {
-  id: number;
-  championship: Team;
-  season: Season;
 }
 export interface Season {
   id: number;

@@ -11,7 +11,7 @@ class UpdateChampionshipRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,8 @@ class UpdateChampionshipRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'season_id' => 'required|exists:seasons,id',
+            'team_id' => 'required|exists:teams,id'
         ];
     }
 }

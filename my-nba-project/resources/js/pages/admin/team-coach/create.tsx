@@ -30,7 +30,7 @@ export default function Create({ teams, coaches, seasons }: { teams: Team[], coa
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('admin.team-coach.store'));
+        post(route('admin.team-coach.store-team-coach'));
     };
 
     return (

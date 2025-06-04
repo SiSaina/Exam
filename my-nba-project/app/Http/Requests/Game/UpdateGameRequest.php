@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Game;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -11,7 +11,7 @@ class UpdateGameRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class UpdateGameRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'date' => 'required|date',
+            'time' => 'required|date_format:H:i',
+            'home_team_id' => 'required|exists:teams,id',
+            'away_team_id' => 'required|exists:teams,id|different:home_team_id',
+            'home_team_score' => 'nullable|integer|min:0',
+            'away_team_score' => 'nullable|integer|min:0',
         ];
     }
 }
