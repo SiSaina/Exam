@@ -125,10 +125,11 @@ export interface Game {
   name: string;
   date: string;
   time: string;
-  homeTeam: Team;
-  awayTeam: Team;
-  homeTeamScore: number;
-  awayTeamScore: number;
+  duration: string;
+  home_team: Team;
+  away_team: Team;
+  home_team_score: number;
+  away_team_score: number;
 }
 
 export interface GameRosterStats {

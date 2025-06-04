@@ -25,10 +25,15 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::post('/coach/storeCoach', [AdminPlayerController::class, 'storeCoach'])->name('coach.store-coach');
     Route::post('/roster/storeRoster', [AdminPlayerController::class, 'storeRoster'])->name('roster.store-roster');
     Route::post('/team-coach/storeTeamCoach', [AdminPlayerController::class, 'storeTeamCoach'])->name('team-coach.store-team-coach');
-
+    
+    //team
     Route::get('/team/index', [AdminTeamController::class, 'index'])->name('team.index');
-    Route::post('/team/storeTeam', [AdminPlayerController::class, 'storeTeam'])->name('team.store-team');
-    Route::get('/team/create', [AdminPlayerController::class, 'createTeam'])->name('team.create');
+    Route::post('/team/storeTeam', [AdminTeamController::class, 'storeTeam'])->name('team.store-team');
+    Route::get('/team/create', [AdminTeamController::class, 'createTeam'])->name('team.create');
+
+    //game
+    Route::get('/game/create', [AdminGameController::class, 'createGame'])->name('game.create');
+    Route::post('/game/storeGame', [AdminGameController::class, 'storeGame'])->name('game.store-game');
 
     Route::get('/season/create', [AdminStatisticController::class, 'createSeason'])->name('season.create');
     Route::post('/season/storeSeason', [AdminStatisticController::class, 'storeSeason'])->name('season.store-season');

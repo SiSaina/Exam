@@ -31,7 +31,7 @@ export default function Create({ teams, players, seasons }: { teams: Team[], pla
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('admin.player.store-roster'));
+        post(route('admin.roster.store-roster'));
     };
 
     return (

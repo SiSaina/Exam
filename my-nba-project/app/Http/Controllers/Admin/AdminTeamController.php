@@ -24,6 +24,6 @@ class AdminTeamController extends Controller
     {
         $validatedData = $request->validated();
         Team::create($validatedData);
-        return to_route('admin.player-index')->with('success', 'Team created successfully.');
+        return to_route('admin.team')->with('success', 'Team created successfully.');
     }
 }

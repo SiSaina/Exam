@@ -27,8 +27,9 @@ class StoreGameRequest extends FormRequest
             'time' => 'required|date_format:H:i',
             'home_team_id' => 'required|exists:teams,id',
             'away_team_id' => 'required|exists:teams,id|different:home_team_id',
-            'home_team_score' => 'required|integer|min:0',
-            'away_team_score' => 'required|integer|min:0',
+            'home_team_score' => 'nullable|integer|min:0',
+            'away_team_score' => 'nullable|integer|min:0',
+            'season_id' => 'required|exists:seasons,id'
         ];
     }
 }

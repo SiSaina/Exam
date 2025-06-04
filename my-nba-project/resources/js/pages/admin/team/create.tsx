@@ -7,7 +7,7 @@ import { FormEventHandler } from "react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/admin/player-index',
+        href: '/admin/team',
     },
     {
         title: 'create team',

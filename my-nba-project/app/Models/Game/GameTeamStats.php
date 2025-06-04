@@ -2,6 +2,8 @@
 
 namespace App\Models\Game;
 
+use App\Models\Basketball\Team;
+use App\Models\Statistic\TeamSeasonStats;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
