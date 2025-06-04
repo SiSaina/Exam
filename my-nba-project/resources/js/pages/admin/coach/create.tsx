@@ -1,5 +1,5 @@
 import AdminLayout from "@/layouts/admin-layout";
-import { type BreadcrumbItem, Team } from '@/types';
+import { type BreadcrumbItem, Coach } from '@/types';
 import { Button } from "@headlessui/react";
 import { Head, useForm } from "@inertiajs/react";
 import { FormEventHandler } from "react";
@@ -7,23 +7,21 @@ import { FormEventHandler } from "react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/admin/player-index',
+        href: '/admin/player',
     },
     {
-        title: 'create team',
-        href: '/admin/team/create',
+        title: 'create coach',
+        href: '/admin/create/create',
     },
 ];
 
 export default function Create() {
-    const { data, setData, post, processing } = useForm<Omit<Team, 'id'>>({
-        name: '',
-        slug: '',
-        slug_two: '',
-        logo_url: '',
-        stadium: '',
-        city: '',
-        conference: '',
+    const { data, setData, post, processing } = useForm<Omit<Coach, 'id'>>({
+        first_name: '',
+        last_name: '',
+        birth_date: '',
+        nationality: '',
+        image_url: '',
     });
 
     function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
@@ -33,59 +31,34 @@ export default function Create() {
 
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        post(route('admin.team.store-team'));
+        post(route('admin.coach.store-coach'));
     };
 
     return (
         <>
             <AdminLayout breadcrumbs={breadcrumbs}>
-                <Head title="Create Team" />
+                <Head title="Create Coach" />
                 <div className="max-w-2xl mx-auto mt-10">
-                    <h1 className="text-3xl font-bold mb-6">Create New Team</h1>
+                    <h1 className="text-3xl font-bold mb-6">Create New Coach</h1>
                     <form className="space-y-6" onSubmit={submit}>
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium">Team Name</label>
+                                <label className="block text-sm font-medium">First Name</label>
                                 <input
-                                    name="name"
+                                    name="first_name"
                                     type="text"
-                                    value={data.name}
+                                    value={data.first_name}
                                     onChange={handleChange}
                                     className="w-full border rounded p-2 mt-1"
                                     required
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium">Slug</label>
+                                <label className="block text-sm font-medium">Last Name</label>
                                 <input
-                                    name="slug"
+                                    name="last_name"
                                     type="text"
-                                    value={data.slug}
-                                    onChange={handleChange}
-                                    className="w-full border rounded p-2 mt-1"
-                                    required
-                                />
-                            </div>
-                        </div>
-
-                        <div className="grid grid-cols-2 gap-4">
-                            <div>
-                                <label className="block text-sm font-medium">Slug Two</label>
-                                <input
-                                    name="slug_two"
-                                    type="text"
-                                    value={data.slug_two}
-                                    onChange={handleChange}
-                                    className="w-full border rounded p-2 mt-1"
-                                    required
-                                />
-                            </div>
-                            <div>
-                                <label className="block text-sm font-medium">Logo URL</label>
-                                <input
-                                    name="logo_url"
-                                    type="url"
-                                    value={data.logo_url || ''}
+                                    value={data.last_name}
                                     onChange={handleChange}
                                     className="w-full border rounded p-2 mt-1"
                                     required
@@ -94,38 +67,35 @@ export default function Create() {
                         </div>
 
                         <div>
-                            <label className="block text-sm font-medium">Stadium</label>
+                            <label className="block text-sm font-medium">Image URL</label>
                             <input
-                                name="stadium"
-                                type="text"
-                                value={data.stadium || ''}
+                                name="image_url"
+                                type="url"
+                                value={data.image_url || ''}
                                 onChange={handleChange}
                                 className="w-full border rounded p-2 mt-1"
-                                required
                             />
                         </div>
 
                         <div className="grid grid-cols-2 gap-4">
                             <div>
-                                <label className="block text-sm font-medium">City</label>
+                                <label className="block text-sm font-medium">Birth Date</label>
                                 <input
-                                    name="city"
-                                    type="text"
-                                    value={data.city || ''}
+                                    name="birth_date"
+                                    type="date"
+                                    value={data.birth_date || ''}
                                     onChange={handleChange}
                                     className="w-full border rounded p-2 mt-1"
-                                    required
                                 />
                             </div>
                             <div>
-                                <label className="block text-sm font-medium">Conference</label>
+                                <label className="block text-sm font-medium">Nationality</label>
                                 <input
-                                    name="conference"
+                                    name="nationality"
                                     type="text"
-                                    value={data.conference || ''}
+                                    value={data.nationality || ''}
                                     onChange={handleChange}
                                     className="w-full border rounded p-2 mt-1"
-                                    required
                                 />
                             </div>
                         </div>
@@ -136,7 +106,7 @@ export default function Create() {
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                                 disabled={processing}
                             >
-                                {processing ? 'Creating...' : 'Create Team'}
+                                {processing ? 'Creating...' : 'Create Coach'}
                             </Button>
                         </div>
                     </form>

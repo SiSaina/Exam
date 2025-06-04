@@ -16,7 +16,7 @@ import AppLogoIcon from './app-logo-icon';
 
 const adminNavItem: NavItem = {
     title: 'Admin dashboard',
-    href: '/admin/game/index',
+    href: '/admin/player',
     icon: User
 };
 const baseNavItems: NavItem[] = [

@@ -169,12 +169,10 @@ export interface Championship {
   season: Season;
   team: Team;
 }
-export interface Season {
+export interface Championship {
   id: number;
-  name: string;
-  startDate: string;
-  endDate: string;
-  championship: string;
+  championship: Team;
+  season: Season;
 }
 export interface Season {
   id: number;

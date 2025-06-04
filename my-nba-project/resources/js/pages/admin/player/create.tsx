@@ -7,7 +7,7 @@ import { FormEventHandler } from "react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/admin/player/index',
+        href: '/admin/player',
     },
     {
         title: 'create player',
@@ -15,7 +15,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function CreatePlayer() {
+export default function Create() {
     const { data, setData, post, processing } = useForm<Omit<Player, 'id'>>({
         first_name: '',
         last_name: '',
@@ -40,7 +40,6 @@ export default function CreatePlayer() {
     }
     const submit: FormEventHandler = (e) => {
         e.preventDefault();
-        alert('Hello!');
         post(route('admin.player.store-player'));
     };
 

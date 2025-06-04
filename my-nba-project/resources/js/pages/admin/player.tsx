@@ -5,11 +5,11 @@ import { Head, Link } from "@inertiajs/react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/index',
+        href: '/admin/player',
     },
 ];
 
-export default function Index() {
+export default function Player() {
     return (
         <>
             <AdminLayout breadcrumbs={breadcrumbs}>
@@ -18,29 +18,26 @@ export default function Index() {
                     <h1 className="text-4xl font-bold mb-4">Index player</h1>
                     <div className="flex flex-row flex-wrap items-center justify-center gap-4 mt-4">
                         <Link
-                            href={route('admin.player.create-player')}
+                            href={route('admin.player.create')}
                             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600"
                         >
                             Create player
                         </Link>
-
                         <Link
-                            href={route('admin.player.create-roster')}
+                            href={route('admin.roster.create')}
                             className="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600"
                         >
                             Create roster
                         </Link>
-
                         <Link
-                            href={route('admin.player.create-coach')}
+                            href={route('admin.coach.create')}
                             className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
                         >
                             Create coach
                         </Link>
-
                         <Link
-                            href={route('admin.player.create-team-coach')}
-                            className="px-4 py-2 bg-yellow-500 text-black rounded hover:bg-yellow-600"
+                            href={route('admin.team-coach.create')}
+                            className="px-4 py-2 bg-purple-500 text-white rounded hover:bg-purple-600"
                         >
                             Create team coach
                         </Link>
