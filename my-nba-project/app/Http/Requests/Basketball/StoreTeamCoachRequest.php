@@ -11,7 +11,7 @@ class StoreTeamCoachRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,10 @@ class StoreTeamCoachRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'team_id' => 'required|exists:teams,id',
+            'coach_id' => 'required|exists:coaches,id',
+            'season_id' => 'required|exists:seasons,id',
+            'position' => 'required|string|max:50',
         ];
     }
 }

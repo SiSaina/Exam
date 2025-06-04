@@ -38,9 +38,29 @@ class AdminPlayerController extends Controller
         $validatedData = $request->validated();
         Player::create($validatedData);
 
-        return to_route('admin.player.index')
-            ->with('success', 'Player created successfully.');
+        return to_route('admin.player.index')->with('success', 'Player created successfully.');
     }
+    public function storeCoach(Request $request): RedirectResponse
+    {
+        // Logic to store coach
+        return to_route('admin.player.index')->with('success', 'Coach created successfully.');
+    }
+    public function storeRoster(Request $request): RedirectResponse
+    {
+        // Logic to store roster
+        return to_route('admin.player.index')->with('success', 'Roster created successfully.');
+    }
+    public function storeTeam(Request $request): RedirectResponse
+    {
+        // Logic to store team
+        return to_route('admin.player.index')->with('success', 'Team created successfully.');
+    }
+    public function storeTeamCoach(Request $request): RedirectResponse
+    {
+        // Logic to store team coach
+        return to_route('admin.player.index')->with('success', 'Team coach created successfully.');
+    }
+
     public function edit($id)
     {
         return inertia('admin/player/edit', ['id' => $id]);

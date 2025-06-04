@@ -11,7 +11,7 @@ class StoreTeamRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,13 @@ class StoreTeamRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255|unique:teams,slug',
+            'slug_two' => 'required|string|max:255|unique:teams,slug_two',
+            'logo_url' => 'required|url',
+            'stadium' => 'required|string|max:255',
+            'city' => 'required|string|max:100',
+            'conference' => 'required|string|max:50',
         ];
     }
 }

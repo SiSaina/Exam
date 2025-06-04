@@ -11,7 +11,7 @@ class UpdateRosterRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class UpdateRosterRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'team_id' => 'required|exists:teams,id',
+            'player_id' => 'required|exists:players,id',
+            'season_id' => 'required|exists:seasons,id',
+            'position' => 'required|string|max:50',
+            'jersey_number' => 'required|integer|min:0|max:99',
         ];
     }
 }

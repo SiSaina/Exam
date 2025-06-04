@@ -100,9 +100,9 @@ export interface Coach {
 }
 
 export interface TeamCoach {
-  team_id: Team;
-  coach_id: Coach;
-  season_id: Season;
+  team: Team;
+  coach: Coach;
+  season: Season;
   position: string;
 }
 
