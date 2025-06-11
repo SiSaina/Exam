@@ -37,7 +37,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::get('/game/startGame/{game}', [AdminGameController::class, 'startGame'])->name('game.start-game');
     Route::delete('/game/delete/{game}', [AdminGameController::class, 'deleteGame'])->name('game.delete-game');
 
-    Route::post('/game/updateRosterStats', [AdminGameController::class, 'updateGameRosterStats'])->name('game.update-roster-stats');
+    Route::patch('/game/updateRosterStats', [AdminGameController::class, 'updateGameRosterStats'])->name('game.update-roster-stats');
 
     Route::get('/season/create', [AdminStatisticController::class, 'createSeason'])->name('season.create');
     Route::post('/season/storeSeason', [AdminStatisticController::class, 'storeSeason'])->name('season.store-season');

@@ -31,7 +31,7 @@ export default function StartGame() {
                     <p className="text-lg text-gray-600">{game.date} | {game.time}</p>
                     <p className="text-lg">{game.home_team.name} vs {game.away_team.name}</p>
                     <GameTimer duration={gameDuration} onUpdate={(newDuration) => setGameDuration(newDuration)} />
-                    <StatInput homeTeamRosters={homeTeamRosters} awayTeamRosters={awayTeamRosters} />
+                    <StatInput game={game.id} homeTeamRosters={homeTeamRosters} awayTeamRosters={awayTeamRosters} />
 
                     <div className="grid grid-rows-2 gap-8 mt-6">
                         <div>

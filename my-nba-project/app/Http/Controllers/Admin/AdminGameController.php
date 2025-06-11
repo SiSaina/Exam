@@ -59,9 +59,10 @@ class AdminGameController extends Controller
             'teams' => Team::whereIn('id', $teamIds)->get(),
         ]);
     }
-    public function updateGameRosterStats(UpdateGameRosterStatsRequest $request, $RosterStats)
+    public function updateGameRosterStats(UpdateGameRosterStatsRequest $request)
     {
         $validatedData = $request->validated();
+        dd($validatedData);
         $RosterStats->update($validatedData);
     }
     public function edit($id)
