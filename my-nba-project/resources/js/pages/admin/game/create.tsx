@@ -7,7 +7,7 @@ import { FormEventHandler } from "react";
 const breadcrumbs: BreadcrumbItem[] = [
     {
         title: 'index',
-        href: '/admin/game/index',
+        href: '/admin/game',
     },
     {
         title: 'create game',
@@ -56,7 +56,7 @@ export default function CreateGame({ teams, seasons }: { teams: Team[], seasons:
                                 <option value="">Select Season</option>
                                 {seasons.map(season => (
                                     <option key={season.id} value={season.id}>
-                                        {season.name} ({season.start_date} - {season.end_date})
+                                        {season.name} {season.type} 
                                     </option>
                                 ))}
                             </select>

@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Game\StoreGameRequest;
+use App\Http\Requests\Game\StoreGameRosterStatsRequest;
+use App\Http\Requests\Game\UpdateGameRosterStatsRequest;
+use App\Models\Basketball\Roster;
 use App\Models\Basketball\Team;
 use App\Models\Game\Game;
+use App\Models\Game\GameRosterStats;
 use App\Models\Game\WeekGame;
 use App\Models\Statistic\Season;
 use Illuminate\Http\Request;
@@ -36,6 +40,30 @@ class AdminGameController extends Controller
 
         return redirect()->route('admin.game')->with('success', 'Game and WeekGame created successfully!');
     }
+    public function startGame($id)
+    {
+        $game = Game::with(['homeTeam', 'awayTeam'])->findOrFail($id);
+        $teamIds = [$game->home_team_id, $game->away_team_id];
+        $rosters = Roster::whereIn('team_id', $teamIds)
+            ->with(['player', 'team', 'season', 'gameRosterStats'])
+            ->get();
+        foreach ($rosters as $roster) {
+            GameRosterStats::firstOrCreate(
+                ['roster_id' => $roster->id, 'game_id' => $game->id],
+                ['points' => 0, 'assists' => 0, 'rebounds' => 0, 'steals' => 0, 'blocks' => 0, 'turnovers' => 0, 'fouls' => 0]
+            );
+        }
+        return Inertia::render('admin/game/start', [
+            'game' => $game,
+            'rosters' => $rosters,
+            'teams' => Team::whereIn('id', $teamIds)->get(),
+        ]);
+    }
+    public function updateGameRosterStats(UpdateGameRosterStatsRequest $request, $RosterStats)
+    {
+        $validatedData = $request->validated();
+        $RosterStats->update($validatedData);
+    }
     public function edit($id)
     {
         return Inertia::render('admin/game/edit', ['id' => $id]);
@@ -44,5 +72,15 @@ class AdminGameController extends Controller
     public function show($id)
     {
         return Inertia::render('admin/game/show', ['id' => $id]);
+    }
+    public function deleteGame($id)
+    {
+        $game = Game::findOrFail($id);
+        if ($game->status === 'in_progress') {
+            return redirect()->back()->with('error', 'Cannot delete a game that is in progress.');
+        }
+
+        $game->delete();
+        return redirect()->route('admin.game')->with('success', 'Game deleted successfully!');
     }
 }

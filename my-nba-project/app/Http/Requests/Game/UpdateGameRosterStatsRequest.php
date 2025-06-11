@@ -21,17 +21,32 @@ class UpdateGameRosterStatsRequest extends FormRequest
      */
     public function rules(): array
     {
-        return [
-            'game_id' => 'required|exists:games,id',
-            'roster_id' => 'required|exists:rosters,id',
-            'minutes_played' => 'required|integer|min:0',
-            'points' => 'required|integer|min:0',
-            'rebounds' => 'required|integer|min:0',
-            'assists' => 'required|integer|min:0',
-            'steals' => 'required|integer|min:0',
-            'blocks' => 'required|integer|min:0',
-            'turnovers' => 'required|integer|min:0',
-            'fouls' => 'required|integer|min:0',
-        ];
+        if (Request()->isMethod('PUT')) {
+            return [
+                'game_id' => 'required|exists:games,id',
+                'roster_id' => 'required|exists:rosters,id',
+                'minutes_played' => 'required|integer|min:0',
+                'points' => 'required|integer|min:0',
+                'rebounds' => 'required|integer|min:0',
+                'assists' => 'required|integer|min:0',
+                'steals' => 'required|integer|min:0',
+                'blocks' => 'required|integer|min:0',
+                'turnovers' => 'required|integer|min:0',
+                'fouls' => 'required|integer|min:0',
+            ];
+        } else {
+            return [
+                'game_id' => 'sometimes|required|exists:games,id',
+                'roster_id' => 'sometimes|required|exists:rosters,id',
+                'minutes_played' => 'sometimes|required|integer|min:0',
+                'points' => 'sometimes|required|integer|min:0',
+                'rebounds' => 'sometimes|required|integer|min:0',
+                'assists' => 'sometimes|required|integer|min:0',
+                'steals' => 'sometimes|required|integer|min:0',
+                'blocks' => 'sometimes|required|integer|min:0',
+                'turnovers' => 'sometimes|required|integer|min:0',
+                'fouls' => 'sometimes|required|integer|min:0',
+            ];
+        }
     }
 }

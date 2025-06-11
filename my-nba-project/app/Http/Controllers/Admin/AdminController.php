@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Game\Game;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -10,7 +11,9 @@ class AdminController extends Controller
 {
     public function game()
     {
-         return Inertia::render('admin/game');
+         return Inertia::render('admin/game', [
+            'games' => Game::with(['homeTeam', 'awayTeam'])->get(),
+         ]);
     }
     public function player()
     {
